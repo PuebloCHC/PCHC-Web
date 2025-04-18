@@ -52,7 +52,11 @@ body {
   /* Hero Section */
   .hero {
     position: relative;
-    background: url('C:\Users\joec1\OneDrive\Pictures\PCHC-Web Background') center/cover no-repeat;
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.4),
+        rgba(0, 0, 0, 0.4)
+      ),
+      url('C:\Users\joec1\OneDrive\Pictures\PCHC-Web Background') center/cover no-repeat;
     color: white;
     text-align: center;
     padding: 6rem 2rem;
@@ -62,13 +66,6 @@ body {
     justify-content: center;
   }
   
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.5); /* dark overlay for readability */
-    z-index: 0;
-  }
   
   .hero h2,
   .hero .tagline,
