@@ -1,75 +1,116 @@
-* {
+/* Base Styles */
+body {
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: Arial, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     line-height: 1.6;
     background: #f4f4f4;
     color: #333;
   }
   
-  nav {
-    background: #333;
+  a {
+    color: #007BFF;
+    text-decoration: none;
+  }
+  
+  header {
+    background: linear-gradient(135deg, #3b82f6, #1e40af);
     color: white;
-    padding: 1rem;
+    padding-bottom: 2rem;
+  }
+  
+  nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 1.5rem 2rem;
   }
   
-  nav h1.logo {
-    font-size: 1.5rem;
+  .logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
   }
   
   nav ul {
     list-style: none;
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
   }
   
-  nav ul li a {
+  nav a {
     color: white;
-    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
   }
   
+  nav a:hover {
+    color: #facc15;
+  }
+  
+  /* Hero Section */
   .hero {
     text-align: center;
     padding: 4rem 2rem;
-    background: #007acc;
-    color: white;
   }
   
   .hero h2 {
     font-size: 2.5rem;
+    margin-bottom: 1rem;
   }
   
-  .hero .btn {
-    margin-top: 1rem;
+  .hero .tagline {
+    font-size: 1.3rem;
+    margin-bottom: 2rem; /* Adds space before the button */
+  }
+  
+  .btn {
+    background: #facc15;
+    color: #1e293b;
     padding: 0.75rem 1.5rem;
-    background: white;
-    color: #007acc;
-    text-decoration: none;
     border-radius: 5px;
     font-weight: bold;
+    transition: background 0.3s ease;
   }
   
+  .btn:hover {
+    background: #fbbf24;
+  }
+  
+  /* Sections */
   main {
-    padding: 2rem;
-    max-width: 800px;
+    padding: 3rem 2rem;
+    max-width: 900px;
     margin: auto;
   }
   
   section {
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
   }
   
+  h2 {
+    color: #1e3a8a;
+    margin-bottom: 1rem;
+  }
+  
+  /* Announcements */
+  .announcement-list {
+    padding-left: 1rem;
+  }
+  
+  .announcement-list li {
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Contact */
+  a[href^="mailto:"] {
+    color: #2563eb;
+  }
+  
+  /* Footer */
   footer {
-    text-align: center;
-    padding: 1rem;
-    background: #222;
+    background: #1e293b;
     color: white;
+    text-align: center;
+    padding: 1rem 0;
   }
   
