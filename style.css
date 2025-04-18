@@ -123,11 +123,14 @@ body {
   }
   
   .about-image {
-    width: 100%;
-    max-width: 600px;
+    width: 50%;
+    max-width: 300px;
     margin-top: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
   
 
