@@ -258,7 +258,7 @@ body {
   
   iframe {
     width: 100%;
-    max-width: 560px; /* Adjust size as needed */
+    max-width: 1120px; /* Adjust size as needed */
     height: 315px; /* Adjust size as needed */
   }
   
