@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
         loginModal.style.display = 'none';
         if (adminControls) adminControls.style.display = 'block';
         if (loginError) loginError.style.display = 'none';
-        enableEditing?.();
+        
       } else {
         if (loginError) loginError.style.display = 'block';
       }
@@ -27,38 +27,70 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (localStorage.getItem('isAdmin') === 'true' && adminControls) {
     adminControls.style.display = 'block';
-    enableEditing?.();
+    
   }
+  loadAnnouncementsFromStorage();
+
 });
 
-function addAnnouncement() {
-  const list = document.getElementById('announcementList');
-  const newItemText = document.getElementById('newAnnouncement').value;
-  if (newItemText.trim() === "") return;
-
-  const li = document.createElement('li');
-  li.textContent = newItemText;
-
-  const removeBtn = document.createElement('button');
-  removeBtn.textContent = 'Remove';
-  removeBtn.style.marginLeft = '10px';
-  removeBtn.onclick = () => li.remove();
-
-  li.appendChild(removeBtn);
-  list.appendChild(li);
-
-  document.getElementById('newAnnouncement').value = '';
-}
-
-function enableEditing() {
-  const items = document.querySelectorAll('#announcementList li');
-  items.forEach(item => {
-    if (!item.querySelector('button')) {
-      const removeBtn = document.createElement('button');
-      removeBtn.textContent = 'Remove';
-      removeBtn.style.marginLeft = '10px';
-      removeBtn.onclick = () => item.remove();
-      item.appendChild(removeBtn);
+function saveAnnouncementsToStorage() {
+    const listItems = document.querySelectorAll('#announcementList li');
+    const data = [];
+  
+    listItems.forEach(li => {
+      const text = li.childNodes[0]?.textContent.trim(); // get only the text before the remove button
+      if (text) data.push(text);
+    });
+  
+    localStorage.setItem('announcements', JSON.stringify(data));
+  }
+  
+  function loadAnnouncementsFromStorage() {
+    const stored = localStorage.getItem('announcements');
+    const list = document.getElementById('announcementList');
+  
+    if (stored && list) {
+      const data = JSON.parse(stored);
+      list.innerHTML = ''; // clear current list
+  
+      data.forEach(text => {
+        const li = document.createElement('li');
+        li.textContent = text;
+  
+        const removeBtn = document.createElement('button');
+        removeBtn.textContent = 'Remove';
+        removeBtn.style.marginLeft = '10px';
+        removeBtn.onclick = () => {
+          li.remove();
+          saveAnnouncementsToStorage();
+        };
+  
+        li.appendChild(removeBtn);
+        list.appendChild(li);
+      });
     }
-  });
-}
+  }
+  
+  function addAnnouncement() {
+    const list = document.getElementById('announcementList');
+    const newItemText = document.getElementById('newAnnouncement').value;
+    if (newItemText.trim() === "") return;
+  
+    const li = document.createElement('li');
+    li.textContent = newItemText;
+  
+    const removeBtn = document.createElement('button');
+    removeBtn.textContent = 'Remove';
+    removeBtn.style.marginLeft = '10px';
+    removeBtn.onclick = () => {
+      li.remove();
+      saveAnnouncementsToStorage();
+    };
+  
+    li.appendChild(removeBtn);
+    list.appendChild(li);
+  
+    document.getElementById('newAnnouncement').value = '';
+    saveAnnouncementsToStorage();
+  }
+  
