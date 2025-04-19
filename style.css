@@ -344,4 +344,10 @@ main section {
     background: #001b33;
     font-size: 0.95rem;
   }
+  .video-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+  }
   
