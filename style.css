@@ -241,4 +241,33 @@ body {
     width: 100%;
     height: 100%;
   }
+  /* Add styles for the video section */
+#video {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem 0;
+  }
+  
+  .video-container {
+    max-width: 100%;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+  }
+  
+  iframe {
+    width: 100%;
+    max-width: 560px; /* Adjust size as needed */
+    height: 315px; /* Adjust size as needed */
+  }
+  
+  /* Responsive tweaks for the video section */
+  @media (max-width: 768px) {
+    iframe {
+      width: 100%;
+      max-width: 100%;
+      height: 200px; /* Adjust for smaller screens */
+    }
+  }
   
