@@ -241,34 +241,46 @@ body {
     width: 100%;
     height: 100%;
   }
-  .about-container {
+  /* Ensures the About Us, Announcements, and Contact Us sections are side by side */
+.content-with-video {
     display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
     justify-content: space-between;
     gap: 20px;
   }
   
+  /* Style for the About Us section */
+  .about-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
   .about-and-video {
-    flex: 1;
-    max-width: 60%; /* Adjust the width of the text */
+    max-width: 60%; /* Adjust text section width */
   }
   
+  /* Video container to place it to the right of the text */
   .video-embed {
-    flex: 1;
-    max-width: 35%; /* Adjust the width of the video */
-    margin-top: 20px; /* Add some space above the video */
+    max-width: 35%; /* Adjust video width */
+    margin-top: 20px; /* Adds space above the video */
   }
   
-  /* Optional: Ensure the video is responsive */
+  /* Ensure the video is responsive */
   .video-embed iframe {
     width: 100%;
     height: 100%;
   }
   
-  /* Add padding and margin to text content */
-  .about-text {
-    padding-right: 20px; /* Adjust if needed */
+  /* Optional: Make sure the announcements and contact sections behave responsively */
+  #announcements, #contact {
+    flex: 1;
+    min-width: 30%; /* Ensures the sections have a minimum width */
   }
+  
+  /* Optional: Adds some margin to the sections */
+  #announcements, #contact {
+    margin-top: 20px;
+  }
+  
   
   
