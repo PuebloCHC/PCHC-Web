@@ -52,10 +52,7 @@ body {
   /* Hero Section */
   .hero {
     position: relative;
-    background: linear-gradient(
-        rgba(0, 0, 0, 0.4),
-        rgba(0, 0, 0, 0.4)
-      ),
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
       url('hero-bg.jpg') center/cover no-repeat;
     color: white;
     text-align: center;
@@ -65,7 +62,6 @@ body {
     align-items: center;
     justify-content: center;
   }
-  
   
   .hero h2,
   .hero .tagline,
@@ -92,19 +88,21 @@ body {
     border-radius: 5px;
     font-weight: bold;
     font-size: 1rem;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, transform 0.3s ease;
   }
   
   .btn:hover {
     background: #ff6a36;
+    transform: scale(1.05); /* Slight zoom effect on hover */
   }
+  
   footer {
     background: #002244;
     color: white;
     text-align: center;
     padding: 1rem 0;
   }
-
+  
   body.fade-in {
     opacity: 0;
     animation: fadeIn 1s ease forwards;
@@ -116,17 +114,36 @@ body {
     }
   }
   
+  /* Announcements Page */
   .announcements-page {
     padding: 3rem 2rem;
     max-width: 800px;
     margin: auto;
   }
   
+  .announcement-list {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+  
+  .announcement-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed #ccc;
+    transition: background 0.3s ease;
+  }
+  
+  .announcement-list li:hover {
+    background: #f0f8ff;
+  }
+  
+  /* About Section */
   .about-container {
     display: flex;
     align-items: center;
     gap: 20px;
-    flex-wrap: wrap; /* makes it responsive */
+    flex-wrap: wrap;
   }
   
   .about-image {
@@ -142,21 +159,14 @@ body {
     line-height: 1.5;
   }
   
-
   .announcements-page h2 {
     font-size: 2rem;
     margin-bottom: 1rem;
     color: #002244;
   }
   
-  .announcements-page ul {
-    list-style-type: disc;
-    padding-left: 1.5rem;
-    font-size: 1.1rem;
-    line-height: 1.8;
-  }
-  /* ---------- Responsive Tweaks for Mobile ---------- */
-@media (max-width: 768px) {
+  /* Mobile Responsive Tweaks */
+  @media (max-width: 768px) {
     .about-container {
       flex-direction: column;
       text-align: center;
@@ -241,7 +251,8 @@ body {
     width: 100%;
     height: 100%;
   }
-  /* Add styles for the video section */
+  
+  /* Video Section */
   #video {
     display: flex;
     flex-direction: column;
@@ -258,13 +269,12 @@ body {
   
   iframe {
     width: 100%;
-    max-width: 1000px; /* Doubled from 560px */
-    height: 562px; /* Maintain 16:9 ratio (height = width * 0.5625) */
+    max-width: 1000px;
+    height: 562px; /* Maintain 16:9 ratio */
     outline: none;
     border: none;
   }
   
-  /* Responsive */
   @media (max-width: 1024px) {
     iframe {
       max-width: 90%;
@@ -272,10 +282,9 @@ body {
       aspect-ratio: 16 / 9;
     }
   }
- /* --- Fancy Styling Enhancements --- */
-
-/* Add border and shadow to sections */
-main section {
+  
+  /* Fancy Styling Enhancements */
+  main section {
     background: #fff;
     margin: 2rem auto;
     padding: 2rem;
@@ -285,7 +294,6 @@ main section {
     border: 2px solid #e0e0e0;
   }
   
-  /* Decorative headings */
   main h2 {
     font-size: 2.2rem;
     margin-bottom: 1rem;
@@ -298,28 +306,15 @@ main section {
     margin-right: auto;
   }
   
-  /* Fancy underline for links */
   a:hover {
     text-decoration: underline wavy #fb4f14;
   }
   
-  /* Add hover effect to list items in announcements */
-  .announcement-list li {
-    padding: 0.5rem 0;
-    border-bottom: 1px dashed #ccc;
-    transition: background 0.3s ease;
-  }
-  .announcement-list li:hover {
-    background: #f0f8ff;
-  }
-  
-  /* Make contact section look like a card */
   #contact {
     background: linear-gradient(135deg, #e0f7fa, #ffffff);
     border: 1px solid #b2ebf2;
   }
   
-  /* Elevate the video section */
   #video {
     background: #fafafa;
     border: 2px dashed #ccc;
@@ -328,24 +323,17 @@ main section {
     padding: 2rem;
   }
   
-  /* Add slight zoom to iframe on hover */
   iframe:hover {
     transform: scale(1.02);
     transition: transform 0.3s ease;
   }
   
-  /* Button enhancement */
-  .btn {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    letter-spacing: 1px;
-  }
-  
-  /* Add a border and background to the footer */
-  footer {
+  .footer {
     border-top: 4px solid #fb4f14;
     background: #001b33;
     font-size: 0.95rem;
   }
+  
   .video-wrapper {
     display: flex;
     justify-content: center;
@@ -361,6 +349,4 @@ main section {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     border-radius: 12px;
   }
-  
-  
   
