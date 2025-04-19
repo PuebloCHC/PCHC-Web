@@ -270,5 +270,80 @@ body {
       aspect-ratio: 16 / 9;
     }
   }
+  /* --- Fancy Enhancements --- */
+
+section {
+    background: white;
+    margin: 2rem auto;
+    padding: 2rem;
+    max-width: 1000px;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  }
+  
+  .about-container,
+  .announcement-list,
+  .video-container {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    padding: 1rem;
+  }
+  
+  .about-image {
+    border: 4px solid #fb4f14;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .about-image:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  }
+  
+  .announcement-list li {
+    border-bottom: 1px dashed #bbb;
+    padding: 0.5rem 0;
+  }
+  
+  .announcement-list li:last-child {
+    border-bottom: none;
+  }
+  
+  iframe {
+    border: 4px solid #1e40af;
+    border-radius: 12px;
+  }
+  
+  /* Section Headings */
+  section h2 {
+    font-size: 2rem;
+    color: #1e40af;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #fb4f14;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+  }
+  
+  /* Contact Section Touchups */
+  #contact p {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Button Glow Effect */
+  .btn {
+    box-shadow: 0 4px 12px rgba(251, 79, 20, 0.4);
+  }
+  
+  .btn:hover {
+    box-shadow: 0 6px 20px rgba(255, 106, 54, 0.6);
+  }
   
   
