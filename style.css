@@ -349,18 +349,17 @@ main section {
   .video-wrapper {
     display: flex;
     justify-content: center;
+    align-items: center;
     margin: 2rem auto;
   }
   
   .video-wrapper iframe {
-    width: 100%;
-    max-width: 560px;
-    aspect-ratio: 16 / 9;
+    width: 560px;
+    height: 315px;
     border: none;
     outline: none;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    border-radius: 12px;
   }
+  
   
   
   
