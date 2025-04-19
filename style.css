@@ -242,7 +242,7 @@ body {
     height: 100%;
   }
   /* Add styles for the video section */
-#video {
+  #video {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -250,24 +250,25 @@ body {
   }
   
   .video-container {
-    max-width: 100%;
-    padding: 1rem;
+    width: 100%;
     display: flex;
     justify-content: center;
+    padding: 0 2rem;
   }
   
   iframe {
     width: 100%;
-    max-width: 1120px; /* Adjust size as needed */
-    height: 315px; /* Adjust size as needed */
+    max-width: 1000px; /* Doubled from 560px */
+    height: 562px; /* Maintain 16:9 ratio (height = width * 0.5625) */
   }
   
-  /* Responsive tweaks for the video section */
-  @media (max-width: 768px) {
+  /* Responsive */
+  @media (max-width: 1024px) {
     iframe {
-      width: 100%;
-      max-width: 100%;
-      height: 200px; /* Adjust for smaller screens */
+      max-width: 90%;
+      height: auto;
+      aspect-ratio: 16 / 9;
     }
   }
+  
   
