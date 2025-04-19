@@ -260,6 +260,8 @@ body {
     width: 100%;
     max-width: 1000px; /* Doubled from 560px */
     height: 562px; /* Maintain 16:9 ratio (height = width * 0.5625) */
+    outline: none;
+    border: none;
   }
   
   /* Responsive */
