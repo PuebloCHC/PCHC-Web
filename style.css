@@ -197,6 +197,10 @@ body {
       padding: 0.6rem 1rem;
     }
   
+    iframe {
+      width: 100%;
+    }
+  }
   
   @media (max-width: 480px) {
     body {
@@ -347,7 +351,6 @@ main section {
     justify-content: center;
     align-items: center;
     margin: 2rem auto;
-    width: 100%;  /* Full width */
   }
   
   .video-wrapper iframe {
@@ -355,21 +358,6 @@ main section {
     height: 315px;
     border: none;
     outline: none;
-  }
-  body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  main {
-    width: 100%;
-    max-width: 1200px; /* Optional, if you want to limit the content width */
-    margin: 0 auto;
   }
   
   
