@@ -358,16 +358,7 @@ main section {
     border: none;
     outline: none;
   }
-  body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
+ 
   main {
     width: 100%;
     max-width: 1200px; /* Optional, if you want to limit the content width */
