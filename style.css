@@ -197,10 +197,6 @@ body {
       padding: 0.6rem 1rem;
     }
   
-    iframe {
-      width: 100%;
-    }
-  }
   
   @media (max-width: 480px) {
     body {
@@ -262,6 +258,8 @@ body {
     height: 562px; /* Maintain 16:9 ratio (height = width * 0.5625) */
     outline: none;
     border: none;
+    display: block;
+    margin: 0 auto;
   }
   
   /* Responsive */
