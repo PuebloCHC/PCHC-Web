@@ -49,48 +49,8 @@
     </div>
   </div>
 
-  <script>
-    
-    const ADMIN_PASSWORD = "Acts2:38!";
-    
-    document.getElementById('loginBtn').onclick = () => {
-      document.getElementById('loginModal').style.display = 'block';
-    };
-    
-    document.getElementById('closeModal').onclick = () => {
-      document.getElementById('loginModal').style.display = 'none';
-    };
-    
-    document.getElementById('submitLogin').onclick = () => {
-      const input = document.getElementById('adminPassword').value;
-      if (input === ADMIN_PASSWORD) {
-        document.getElementById('loginModal').style.display = 'none';
-        document.getElementById('adminControls').style.display = 'block';
-        document.getElementById('loginError').style.display = 'none';
-      } else {
-        document.getElementById('loginError').style.display = 'block';
-      }
-    };
-    
-    function addAnnouncement() {
-      const list = document.getElementById('announcementList');
-      const newItemText = document.getElementById('newAnnouncement').value;
-      if (newItemText.trim() === "") return;
-    
-      const li = document.createElement('li');
-      li.textContent = newItemText;
-    
-      const removeBtn = document.createElement('button');
-      removeBtn.textContent = 'Remove';
-      removeBtn.style.marginLeft = '10px';
-      removeBtn.onclick = () => li.remove();
-    
-      li.appendChild(removeBtn);
-      list.appendChild(li);
-    
-      document.getElementById('newAnnouncement').value = '';
-    }
-    </script>
+  <script src="script.js"></script>
+
     
 </body>
 </html>
