@@ -32,42 +32,93 @@
 
   <main>
     <section id="about">
-      <h2>About Us</h2>
-      <div class="about-container">
-        <img src="Bishop-Mama.png" alt="About PCHC" class="about-image" />
-        <p class="about-text">
-          We are all about healing the land of Pueblo through a relationship with Jesus Christ!<br>
-          The two individuals you see here are our Bishop and Mama Reeves.<br>
-          They take great care of us, and are always willing to help!
-        </p>
-      </div>
-    </section>
-  
+        <h2>About Us</h2>
+        <div class="about-container">
+          <img src="Bishop-Mama.png" alt="About PCHC" class="about-image" />
+          <p class="about-text">
+            We are all about healing the land of Pueblo through a relationship with Jesus Christ!<br>
+            The two individuals you see here are our Bishop and Mama Reeves.<br>
+            They take great care of us, and are always willing to help!
+          </p>
+        </div>
+      </section>
+      
+
     <section id="announcements">
       <h2>Announcements</h2>
       <ul class="announcement-list">
-        <!-- JavaScript for pulling calendar events will populate this list -->
+        <script>
+            const apiKey = 'AIzaSyA18ZEh4f1NIseKFpZ0IYw3qS5sC_Wb1rc';
+            const calendarId = 'mypueblochc@gmail.com';
+          
+            const now = new Date();
+          
+            // Get Sunday of the current week
+            const startOfWeek = new Date(now);
+            startOfWeek.setDate(now.getDate() - now.getDay());
+            startOfWeek.setHours(0, 0, 0, 0);
+          
+            // Get Saturday of next week (2 weeks total)
+            const endOfNextWeek = new Date(startOfWeek);
+            endOfNextWeek.setDate(startOfWeek.getDate() + 13);
+            endOfNextWeek.setHours(23, 59, 59, 999);
+          
+            const isoStart = startOfWeek.toISOString();
+            const isoEnd = endOfNextWeek.toISOString();
+          
+            fetch(`https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events?key=${apiKey}&timeMin=${isoStart}&timeMax=${isoEnd}&singleEvents=true&orderBy=startTime`)
+              .then(response => response.json())
+              .then(data => {
+                const list = document.querySelector('.announcement-list');
+                list.innerHTML = '';
+          
+                if (!data.items || data.items.length === 0) {
+                  list.innerHTML = '<li>No upcoming events this week or next.</li>';
+                  return;
+                }
+          
+                data.items.forEach(event => {
+                  const date = new Date(event.start.dateTime || event.start.date);
+                  const formattedDate = date.toLocaleDateString(undefined, {
+                    weekday: 'short',
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric'
+                  });
+          
+                  const time = event.start.dateTime
+                    ? ` @ ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`
+                    : '';
+          
+                  list.innerHTML += `<li>${formattedDate}${time} - ${event.summary}</li>`;
+                });
+              })
+              .catch(error => {
+                console.error('Error fetching events:', error);
+              });
+          </script>
+           
+          
       </ul>
     </section>
-  
-    <!-- New section for YouTube video embedded -->
+
     <section id="video">
-      <h2>Watch Our Video</h2>
-      <div class="video-container">
-        <!-- Replace the src URL with your specific YouTube video embed URL -->
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/hK3CCLQ5-Us" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
-    </section>
-  
+        <h2>Watch Our Video</h2>
+        <div class="video-container">
+          <!-- Replace the src URL with your specific YouTube video embed URL -->
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/your_video_id" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </section>
+
     <section id="contact">
       <h2>Contact Us</h2>
-      <p>Email us at <a href="mailto:mypueblochc@gmail.com">mypueblochc@gmail.com</a></p>
-      <p>Bishop Reeves Cell: (719) 640-7720</p>
-      <p>Mama Reeves Cell: (719) 640-7721</p>
-      <p>Call or text if you need anything</p>
+      <p>Email us at <a href="mailto:mypueblochc@gmail.com"> 
+        mypueblochc@gmail.com </a></p>
+        <p>Bishop Reeves Cell: (719) 640-7720</p>
+        <p>Mama Reeves Cell: (719) 640-7721</p>
+        <p>Call or text if you need anything</p>
     </section>
   </main>
-  
 
   <footer>
     <p>© 2025 PCHC. All rights reserved.</p>
