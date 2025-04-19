@@ -258,8 +258,6 @@ body {
     height: 562px; /* Maintain 16:9 ratio (height = width * 0.5625) */
     outline: none;
     border: none;
-    display: block;
-    margin: 0 auto;
   }
   
   /* Responsive */
@@ -358,7 +356,16 @@ main section {
     border: none;
     outline: none;
   }
- 
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
   main {
     width: 100%;
     max-width: 1200px; /* Optional, if you want to limit the content width */
