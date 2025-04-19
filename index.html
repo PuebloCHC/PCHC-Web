@@ -34,13 +34,21 @@
     <section id="about">
         <h2>About Us</h2>
         <div class="about-container">
-          <img src="Bishop-Mama.png" alt="About PCHC" class="about-image" />
-          <p class="about-text">
-            We are all about healing the land of Pueblo through a relationship with Jesus Christ!<br>
-            The two individuals you see here are our Bishop and Mama Reeves.<br>
-            They take great care of us, and are always willing to help!
-          </p>
-        </div>
+            <img src="Bishop-Mama.png" alt="About PCHC" class="about-image" />
+            
+            <div class="about-and-video">
+              <p class="about-text">
+                We are all about healing the land of Pueblo through a relationship with Jesus Christ!<br>
+                The two individuals you see here are our Bishop and Mama Reeves.<br>
+                They take great care of us, and are always willing to help!
+              </p>
+          
+              <div id="latest-video" class="video-embed">
+                <!-- YouTube video will be embedded here -->
+              </div>
+            </div>
+          </div>
+          
       </section>
       
 
@@ -116,6 +124,22 @@
     <p>© 2025 PCHC. All rights reserved.</p>
   </footer>
 
+  <script>
+    const apiKey = "AIzaSyA18ZEh4f1NIseKFpZ0IYw3qS5sC_Wb1rc";
+    const channelId = "@PuebloCHC0238";
   
+    fetch(`https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&order=date&part=snippet&type=video&maxResults=1`)
+      .then(response => response.json())
+      .then(data => {
+        const videoId = data.items[0].id.videoId;
+        const embedHtml = `
+          <iframe width="100%" height="315" 
+            src="https://www.youtube.com/embed/${videoId}" 
+            frameborder="0" allowfullscreen></iframe>`;
+        document.getElementById("latest-video").innerHTML = embedHtml;
+      })
+      .catch(err => console.error('YouTube API error:', err));
+  </script>
+    
 </body>
 </html>
