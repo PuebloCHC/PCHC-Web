@@ -1,4 +1,4 @@
-const ADMIN_PASSWORD = "Acts2:38!";  // Note: Consider a more secure method in production
+const ADMIN_PASSWORD = "Acts2:38!";
 
 // Firebase config + init FIRST
 const firebaseConfig = {
@@ -52,10 +52,17 @@ function saveAnnouncementsToFirebase() {
 
   listItems.forEach(li => {
     const text = li.childNodes[0]?.textContent.trim();
-    if (text) data.push(text);
+    if (text) data.push({ announcement: text });
   });
 
-  db.ref('announcements').set(data);
+  // Save the array of announcements to Firebase
+  db.ref('announcements').set(data)
+    .then(() => {
+      console.log('Announcements saved successfully');
+    })
+    .catch(error => {
+      console.error('Error saving announcements: ', error);
+    });
 }
 
 // Load announcements from Firebase
@@ -68,18 +75,16 @@ function loadAnnouncementsFromFirebase() {
     list.innerHTML = '';
 
     if (Array.isArray(data)) {
-      data.forEach(text => {
+      data.forEach(announcementObj => {
         const li = document.createElement('li');
-        li.textContent = text;
+        li.textContent = announcementObj.announcement;
 
         const removeBtn = document.createElement('button');
         removeBtn.textContent = 'Remove';
         removeBtn.style.marginLeft = '10px';
         removeBtn.onclick = () => {
-          if (confirm('Are you sure you want to remove this announcement?')) {
-            li.remove();
-            saveAnnouncementsToFirebase();
-          }
+          li.remove();
+          saveAnnouncementsToFirebase();
         };
 
         li.appendChild(removeBtn);
@@ -99,18 +104,4 @@ function addAnnouncement() {
   li.textContent = newItemText;
 
   const removeBtn = document.createElement('button');
-  removeBtn.textContent = 'Remove';
-  removeBtn.style.marginLeft = '10px';
-  removeBtn.onclick = () => {
-    if (confirm('Are you sure you want to remove this announcement?')) {
-      li.remove();
-      saveAnnouncementsToFirebase();
-    }
-  };
-
-  li.appendChild(removeBtn);
-  list.appendChild(li);
-
-  document.getElementById('newAnnouncement').value = ''; // Clear input field
-  saveAnnouncementsToFirebase();
-}
+  remove
