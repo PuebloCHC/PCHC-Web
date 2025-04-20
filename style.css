@@ -319,7 +319,9 @@ body {
     margin-left: auto;
     margin-right: auto;
   }
-  
+  button:hover {
+    text-decoration: underline wavy #fb4f14;
+  }
   a:hover {
     text-decoration: underline wavy #fb4f14;
   }
