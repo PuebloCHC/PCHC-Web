@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="favicon.png">
-
 </head>
 <body class="fade-in">
 
@@ -23,14 +22,12 @@
         <li><a href="#contact">Contact</a></li>
         <li><button id="loginBtn">Login</button></li>
         <li><button id="logoutBtn" style="display: none;">Logout</button></li>
-
       </ul>
     </nav>
     <section class="hero">
       <h2>Welcome to PCHC</h2>
       <p class="tagline">Praise The Lord!</p>
       <a href="announcements.html" class="btn">View Announcements</a>
-      
     </section>
   </header>
 
@@ -49,64 +46,12 @@
             They take great care of us, and are always willing to help!
           </p>
         </div>
-      </section>
-      
-
+    </section>
+    
     <section id="announcements">
       <h2>Announcements</h2>
       <ul class="announcement-list">
-        <script>
-            const apiKey = 'AIzaSyA18ZEh4f1NIseKFpZ0IYw3qS5sC_Wb1rc';
-            const calendarId = 'mypueblochc@gmail.com';
-          
-            const now = new Date();
-          
-            // Get Sunday of the current week
-            const startOfWeek = new Date(now);
-            startOfWeek.setDate(now.getDate() - now.getDay());
-            startOfWeek.setHours(0, 0, 0, 0);
-          
-            // Get Saturday of next week (2 weeks total)
-            const endOfNextWeek = new Date(startOfWeek);
-            endOfNextWeek.setDate(startOfWeek.getDate() + 13);
-            endOfNextWeek.setHours(23, 59, 59, 999);
-          
-            const isoStart = startOfWeek.toISOString();
-            const isoEnd = endOfNextWeek.toISOString();
-          
-            fetch(`https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events?key=${apiKey}&timeMin=${isoStart}&timeMax=${isoEnd}&singleEvents=true&orderBy=startTime`)
-              .then(response => response.json())
-              .then(data => {
-                const list = document.querySelector('.announcement-list');
-                list.innerHTML = '';
-          
-                if (!data.items || data.items.length === 0) {
-                  list.innerHTML = '<li>No upcoming events this week or next.</li>';
-                  return;
-                }
-          
-                data.items.forEach(event => {
-                  const date = new Date(event.start.dateTime || event.start.date);
-                  const formattedDate = date.toLocaleDateString(undefined, {
-                    weekday: 'short',
-                    month: 'short',
-                    day: 'numeric',
-                    year: 'numeric'
-                  });
-          
-                  const time = event.start.dateTime
-                    ? ` @ ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`
-                    : '';
-          
-                  list.innerHTML += `<li>${formattedDate}${time} - ${event.summary}</li>`;
-                });
-              })
-              .catch(error => {
-                console.error('Error fetching events:', error);
-              });
-          </script>
-           
-          
+        <!-- JavaScript for fetching events will go here -->
       </ul>
     </section>
 
@@ -123,15 +68,14 @@
             allowfullscreen>
           </iframe>
         </div>
-      </section>
+    </section>
 
     <section id="contact">
       <h2>Contact Us</h2>
-      <p>Email us at <a href="mailto:mypueblochc@gmail.com"> 
-        mypueblochc@gmail.com </a></p>
-        <p>Bishop Reeves Cell: (719) 640-7720</p>
-        <p>Mama Reeves Cell: (719) 640-7721</p>
-        <p>Call or text if you need anything</p>
+      <p>Email us at <a href="mailto:mypueblochc@gmail.com">mypueblochc@gmail.com</a></p>
+      <p>Bishop Reeves Cell: (719) 640-7720</p>
+      <p>Mama Reeves Cell: (719) 640-7721</p>
+      <p>Call or text if you need anything</p>
     </section>
   </main>
 
@@ -139,6 +83,7 @@
     <p>© 2025 Pueblo Christian Healing Center (PCHC). All rights reserved.</p>
   </footer>
 
+  <!-- Login Modal -->
   <div id="loginModal" class="modal">
     <div class="modal-content">
       <span id="closeModal">&times;</span>
@@ -149,12 +94,12 @@
       <p id="loginError" style="color: red; display: none;">Login failed. Check your credentials.</p>
     </div>
   </div>
-  
-  </div>
+
+  <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
   <script src="script.js"></script>
 
-    
 </body>
 </html>

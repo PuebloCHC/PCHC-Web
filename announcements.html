@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,6 +8,7 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" type="image/png" href="favicon.png">
 </head>
+
 <body class="fade-in">
 
   <nav>
@@ -18,19 +20,21 @@
       <li><a href="https://cash.app/$PuebloCHC" target="_blank" rel="noopener">Give to PCHC Via Cash App</a></li>
       <li><a href="index.html">Contact</a></li>
       <li><button id="loginBtn">Login</button></li>
-      <li><button id="logoutBtn" style="display: none;">Logout</button></li>
     </ul>
   </nav>
 
   <main class="announcements-page">
     <section>
       <h2>Detailed Announcements</h2>
-      <ul id="announcementList"></ul>
+      <ul id="announcementList">
+        <!-- Announcements will be loaded dynamically here -->
+      </ul>
 
       <div id="adminControls" style="display: none;">
         <h3>Edit Announcements</h3>
         <textarea id="newAnnouncement" placeholder="New announcement text" rows="4" style="width: 100%; padding: 10px; font-size: 1rem;"></textarea>
         <button onclick="addAnnouncement()">Add</button>
+        <button id="logoutBtn" style="display: none;">Log Out</button>
       </div>
     </section>
   </main>
@@ -40,22 +44,23 @@
   </footer>
 
   <!-- Login Modal -->
-  <div id="loginModal" class="modal" style="display: none;">
+  <div id="loginModal" class="modal">
     <div class="modal-content">
-      <span id="closeModal" style="float:right; cursor:pointer;">&times;</span>
+      <span id="closeModal">&times;</span>
       <h2>Admin Login</h2>
-      <input type="email" id="adminEmail" placeholder="Enter email" style="width:100%; padding:10px; margin-bottom:10px;">
-      <input type="password" id="adminPassword" placeholder="Enter password" style="width:100%; padding:10px; margin-bottom:10px;">
+      <input type="email" id="adminEmail" placeholder="Enter email">
+      <input type="password" id="adminPassword" placeholder="Enter password">
       <button id="submitLogin">Log In</button>
       <p id="loginError" style="color: red; display: none;">Incorrect email or password.</p>
     </div>
   </div>
 
-  <!-- Firebase + Scripts -->
+  <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
-  <script src="script.js"></script>
+  <script type="module" src="script.js"></script>
 
 </body>
+
 </html>
