@@ -1,4 +1,4 @@
-const ADMIN_PASSWORD = "Acts2:38!";
+const ADMIN_PASSWORD = "Acts2:38!";  // Note: Consider a more secure method in production
 
 // Firebase config + init FIRST
 const firebaseConfig = {
@@ -76,8 +76,10 @@ function loadAnnouncementsFromFirebase() {
         removeBtn.textContent = 'Remove';
         removeBtn.style.marginLeft = '10px';
         removeBtn.onclick = () => {
-          li.remove();
-          saveAnnouncementsToFirebase();
+          if (confirm('Are you sure you want to remove this announcement?')) {
+            li.remove();
+            saveAnnouncementsToFirebase();
+          }
         };
 
         li.appendChild(removeBtn);
@@ -100,13 +102,15 @@ function addAnnouncement() {
   removeBtn.textContent = 'Remove';
   removeBtn.style.marginLeft = '10px';
   removeBtn.onclick = () => {
-    li.remove();
-    saveAnnouncementsToFirebase();
+    if (confirm('Are you sure you want to remove this announcement?')) {
+      li.remove();
+      saveAnnouncementsToFirebase();
+    }
   };
 
   li.appendChild(removeBtn);
   list.appendChild(li);
 
-  document.getElementById('newAnnouncement').value = '';
+  document.getElementById('newAnnouncement').value = ''; // Clear input field
   saveAnnouncementsToFirebase();
 }
