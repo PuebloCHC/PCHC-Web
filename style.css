@@ -48,6 +48,20 @@ body {
   nav a:hover {
     color: #fb4f14; /* Broncos Orange */
   }
+  nav button {
+    background: none;
+    color: white;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  nav button:hover {
+    color: #fb4f14; /* Broncos Orange */
+  }
+  
   
   /* Hero Section */
   .hero {
