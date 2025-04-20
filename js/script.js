@@ -95,17 +95,17 @@ window.addAnnouncement = function () {
   saveAnnouncements();
 };
 
-function toggleDropdown(event) {
-  event.preventDefault();
-  const dropdown = event.target.closest('.dropdown');
-  dropdown.classList.toggle('open');
+document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.querySelector('.dropdown-toggle');
+  const dropdown = toggle.closest('.dropdown');
 
-  document.querySelectorAll('.dropdown').forEach(d => {
-    if (d !== dropdown) d.classList.remove('open');
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    dropdown.classList.toggle('show');
   });
-}
-document.addEventListener('click', function(e) {
-  if (!e.target.closest('.dropdown')) {
-    document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
-  }
+
+  document.addEventListener('click', () => {
+    dropdown.classList.remove('show');
+  });
 });
+
