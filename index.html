@@ -51,7 +51,56 @@
     <section id="announcements">
       <h2>Announcements</h2>
       <ul class="announcement-list">
-        <!-- JavaScript for fetching events will go here -->
+        <script>
+            const apiKey = 'AIzaSyA18ZEh4f1NIseKFpZ0IYw3qS5sC_Wb1rc';
+            const calendarId = 'mypueblochc@gmail.com';
+          
+            const now = new Date();
+          
+            // Get Sunday of the current week
+            const startOfWeek = new Date(now);
+            startOfWeek.setDate(now.getDate() - now.getDay());
+            startOfWeek.setHours(0, 0, 0, 0);
+          
+            // Get Saturday of next week (2 weeks total)
+            const endOfNextWeek = new Date(startOfWeek);
+            endOfNextWeek.setDate(startOfWeek.getDate() + 13);
+            endOfNextWeek.setHours(23, 59, 59, 999);
+          
+            const isoStart = startOfWeek.toISOString();
+            const isoEnd = endOfNextWeek.toISOString();
+          
+            fetch(https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events?key=${apiKey}&timeMin=${isoStart}&timeMax=${isoEnd}&singleEvents=true&orderBy=startTime)
+              .then(response => response.json())
+              .then(data => {
+                const list = document.querySelector('.announcement-list');
+                list.innerHTML = '';
+          
+                if (!data.items || data.items.length === 0) {
+                  list.innerHTML = '<li>No upcoming events this week or next.</li>';
+                  return;
+                }
+          
+                data.items.forEach(event => {
+                  const date = new Date(event.start.dateTime || event.start.date);
+                  const formattedDate = date.toLocaleDateString(undefined, {
+                    weekday: 'short',
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric'
+                  });
+          
+                  const time = event.start.dateTime
+                    ?  @ ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                    : '';
+          
+                  list.innerHTML += <li>${formattedDate}${time} - ${event.summary}</li>;
+                });
+              })
+              .catch(error => {
+                console.error('Error fetching events:', error);
+              });
+          </script>
       </ul>
     </section>
 
