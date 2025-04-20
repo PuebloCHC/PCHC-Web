@@ -12,6 +12,31 @@ body {
     text-decoration: none;
   }
   
+  a:hover {
+    text-decoration: underline #fb4f14;
+  }
+  
+  button,
+  nav button {
+    background: none;
+    color: white;
+    border: none;
+    font: inherit;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  button {
+    background: #fb4f14;
+    color: white;
+    transition: color 0.3s ease;
+  }
+  
+  button:hover {
+    text-decoration: underline #fb4f14;
+  }
+  
   header {
     background: linear-gradient(135deg, #3b82f6, #1e40af);
     color: white;
@@ -19,12 +44,13 @@ body {
   }
   
   nav {
-    background-color: #002244; /* Broncos Navy */
+    background-color: #002244;
     color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem 2rem;
+    flex-wrap: wrap;
   }
   
   .logo {
@@ -37,6 +63,8 @@ body {
     list-style: none;
     display: flex;
     gap: 1.5rem;
+    padding: 0;
+    margin: 0;
   }
   
   nav a {
@@ -45,38 +73,15 @@ body {
     transition: color 0.3s ease;
   }
   
-  nav a:hover {
-    color: #fb4f14; /* Broncos Orange */
-  }
-  nav button {
-    background: none;
-    color: white;
-    border: none;
-    font: inherit;
-    cursor: pointer;
-    font-weight: 500;
-    transition: color 0.3s ease;
-  }
-  
+  nav a:hover,
   nav button:hover {
-    color: #fb4f14; /* Broncos Orange */
+    color: #fb4f14;
   }
-  button {
-    background: #fb4f14;
-    color: white;
-    border: none;
-    font: inherit;
-    cursor: pointer;
-    font-weight: 500;
-    transition: color 0.3s ease;
-  }
-  
   
   /* Hero Section */
   .hero {
     position: relative;
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-      url('hero-bg.jpg') center/cover no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('hero-bg.jpg') center/cover no-repeat;
     color: white;
     text-align: center;
     padding: 6rem 2rem;
@@ -104,7 +109,7 @@ body {
   }
   
   .btn {
-    background: #fb4f14; /* Broncos Orange */
+    background: #fb4f14;
     color: white;
     padding: 0.75rem 1.5rem;
     border: none;
@@ -116,16 +121,24 @@ body {
   
   .btn:hover {
     background: #ff6a36;
-    transform: scale(1.05); /* Slight zoom effect on hover */
+    transform: scale(1.05);
   }
   
-  footer {
+  /* Footer */
+  footer,
+  .footer {
     background: #002244;
     color: white;
     text-align: center;
     padding: 1rem 0;
   }
   
+  .footer {
+    border-top: 4px solid #fb4f14;
+    font-size: 0.95rem;
+  }
+  
+  /* Page Animations */
   body.fade-in {
     opacity: 0;
     animation: fadeIn 1s ease forwards;
@@ -142,6 +155,12 @@ body {
     padding: 3rem 2rem;
     max-width: 800px;
     margin: auto;
+  }
+  
+  .announcements-page h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #002244;
   }
   
   .announcement-list {
@@ -182,13 +201,176 @@ body {
     line-height: 1.5;
   }
   
-  .announcements-page h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    color: #002244;
+  /* Main Section Styles */
+  main section {
+    background: #fff;
+    margin: 2rem auto;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    max-width: 1000px;
+    border: 2px solid #e0e0e0;
   }
   
-  /* Mobile Responsive Tweaks */
+  main h2 {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #1e40af;
+    border-bottom: 3px solid #fb4f14;
+    display: inline-block;
+    padding-bottom: 0.3rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* Contact Section */
+  #contact {
+    background: linear-gradient(135deg, #e0f7fa, #ffffff);
+    border: 1px solid #b2ebf2;
+  }
+  
+  /* Calendar */
+  .calendar-wrapper {
+    position: relative;
+    padding-bottom: 75%;
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+  }
+  
+  .calendar-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Video Section */
+  #video {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem 0;
+    background: #fafafa;
+    border: 2px dashed #ccc;
+    border-radius: 12px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+    padding: 2rem;
+  }
+  
+  .video-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .video-container iframe {
+    width: 100%;
+    max-width: 1000px;
+    aspect-ratio: 16 / 9;
+    border: none;
+  }
+  
+  iframe:hover {
+    transform: scale(1.02);
+    transition: transform 0.3s ease;
+  }
+  
+  /* Modal */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    padding-top: 80px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+  
+  .modal-content {
+    background-color: #fff;
+    margin: auto;
+    padding: 20px;
+    width: 300px;
+    border-radius: 8px;
+  }
+  
+  #closeModal {
+    float: right;
+    font-size: 28px;
+    cursor: pointer;
+  }
+  
+  /* Dropdown */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-toggle {
+    background: none;
+    color: white;
+    border: none;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 0;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .dropdown-toggle:hover {
+    color: #fb4f14;
+  }
+  
+  .dropdown-toggle:focus {
+    outline: none;
+  }
+  
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 110%;
+    left: 0;
+    background-color: white;
+    min-width: 200px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    list-style: none;
+    padding: 10px 0;
+  }
+  
+  .dropdown-menu li {
+    padding: 8px 16px;
+  }
+  
+  .dropdown-menu li a {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .dropdown-menu li:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .dropdown.show .dropdown-menu {
+    display: block;
+  }
+  
+  /* Responsive Tweaks */
+  @media (max-width: 1024px) {
+    iframe {
+      max-width: 90%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+    }
+  }
+  
   @media (max-width: 768px) {
     .about-container {
       flex-direction: column;
@@ -213,7 +395,6 @@ body {
     nav ul {
       flex-direction: column;
       gap: 10px;
-      padding: 0;
       margin-top: 1rem;
     }
   
@@ -256,186 +437,5 @@ body {
     .about-text {
       font-size: 0.95rem;
     }
-  }
-  
-  /* Calendar Wrapper for Responsive Google Calendar iframe */
-  .calendar-wrapper {
-    position: relative;
-    padding-bottom: 75%;
-    height: 0;
-    overflow: hidden;
-    max-width: 100%;
-  }
-  
-  .calendar-wrapper iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-  
-  /* Video Section */
-  #video {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 2rem 0;
-  }
-  
-  .video-container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  }
-  
-  .video-container iframe {
-    width: 100%;
-    max-width: 1000px;
-    aspect-ratio: 16 / 9;
-    border: none;
-  }
-  
-  
-  @media (max-width: 1024px) {
-    iframe {
-      max-width: 90%;
-      height: auto;
-      aspect-ratio: 16 / 9;
-    }
-  }
-  
-  /* Fancy Styling Enhancements */
-  main section {
-    background: #fff;
-    margin: 2rem auto;
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    max-width: 1000px;
-    border: 2px solid #e0e0e0;
-  }
-  
-  main h2 {
-    font-size: 2.2rem;
-    margin-bottom: 1rem;
-    text-align: center;
-    color: #1e40af;
-    border-bottom: 3px solid #fb4f14;
-    display: inline-block;
-    padding-bottom: 0.3rem;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  button:hover {
-    text-decoration: underline #fb4f14;
-  }
-  a:hover {
-    text-decoration: underline #fb4f14;
-  }
-  
-  #contact {
-    background: linear-gradient(135deg, #e0f7fa, #ffffff);
-    border: 1px solid #b2ebf2;
-  }
-  
-  #video {
-    background: #fafafa;
-    border: 2px dashed #ccc;
-    border-radius: 12px;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
-    padding: 2rem;
-  }
-  
-  iframe:hover {
-    transform: scale(1.02);
-    transition: transform 0.3s ease;
-  }
-  
-  .footer {
-    border-top: 4px solid #fb4f14;
-    background: #001b33;
-    font-size: 0.95rem;
-  }
-  
-
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 999;
-    padding-top: 80px;
-    left: 0; top: 0;
-    width: 100%; height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.6);
-  }
-  
-  .modal-content {
-    background-color: #fff;
-    margin: auto;
-    padding: 20px;
-    width: 300px;
-    border-radius: 8px;
-  }
-  
-  #closeModal {
-    float: right;
-    font-size: 28px;
-    cursor: pointer;
-  }
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .dropdown-toggle {
-    background: none;
-    color: white;
-    border: none;
-    font-weight: 500;
-    font-size: 1rem;
-    padding: 0;
-    cursor: pointer;
-    transition: color 0.3s ease;
-  }
-  
-  .dropdown-toggle:hover {
-    color: #fb4f14; /* Broncos Orange on hover */
-  }
-  
-  
-  .dropdown-toggle:focus {
-    outline: none;
-  }
-  
-  .dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 110%;
-    left: 0;
-    background-color: white;
-    min-width: 200px;
-    border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-    z-index: 1000;
-    list-style: none;
-    padding: 10px 0;
-  }
-  
-  .dropdown-menu li {
-    padding: 8px 16px;
-  }
-  
-  .dropdown-menu li a {
-    text-decoration: none;
-    color: #333;
-  }
-  
-  .dropdown-menu li:hover {
-    background-color: #f1f1f1;
-  }
-  
-  .dropdown.show .dropdown-menu {
-    display: block;
   }
   
