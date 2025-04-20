@@ -104,4 +104,17 @@ function addAnnouncement() {
   li.textContent = newItemText;
 
   const removeBtn = document.createElement('button');
-  remove
+  removeBtn.textContent = 'Remove';
+  removeBtn.style.marginLeft = '10px';
+  removeBtn.onclick = () => {
+    li.remove();
+    saveAnnouncementsToFirebase();
+  };
+
+  li.appendChild(removeBtn);
+  list.appendChild(li);
+
+  // Clear the text input field
+  document.getElementById('newAnnouncement').value = '';
+  saveAnnouncementsToFirebase();
+}
