@@ -249,21 +249,19 @@ body {
   
   /* Video Section */
   #video {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin: 2rem auto;
-    max-width: 100%;
-  }
-  
-  .video-container {
     max-width: 1000px;
-    margin: 0 auto;
-    padding: 0 1rem; /* optional padding */
+    width: 100%;
+    padding: 0 1rem;
+    box-sizing: border-box;
   }
   
-  .video-container iframe {
+  iframe {
     width: 100%;
     aspect-ratio: 16 / 9;
-    display: block;
     border: none;
   }
   
