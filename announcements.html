@@ -8,6 +8,7 @@
   <link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body class="fade-in">
+
   <nav>
     <h1 class="logo">Pueblo Christian Healing Center</h1>
     <ul>
@@ -38,152 +39,23 @@
     <p>© 2025 Pueblo Christian Healing Center (PCHC). All rights reserved.</p>
   </footer>
 
-  <div id="loginModal" class="modal">
+  <!-- Login Modal -->
+  <div id="loginModal" class="modal" style="display: none;">
     <div class="modal-content">
-      <span id="closeModal">&times;</span>
+      <span id="closeModal" style="float:right; cursor:pointer;">&times;</span>
       <h2>Admin Login</h2>
-      <input type="email" id="adminEmail" placeholder="Email">
-      <input type="password" id="adminPassword" placeholder="Password">
+      <input type="email" id="adminEmail" placeholder="Enter email" style="width:100%; padding:10px; margin-bottom:10px;">
+      <input type="password" id="adminPassword" placeholder="Enter password" style="width:100%; padding:10px; margin-bottom:10px;">
       <button id="submitLogin">Log In</button>
       <p id="loginError" style="color: red; display: none;">Incorrect email or password.</p>
     </div>
   </div>
 
-  <!-- Firebase Scripts -->
+  <!-- Firebase + Scripts -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
   <script src="script.js"></script>
+
 </body>
 </html>
-
-
-// script.js
-const firebaseConfig = {
-  apiKey: "AIzaSyDoP12wQz5Rw9RamCq-v7swBZCL5zC602M",
-  authDomain: "pchc-web-changes.firebaseapp.com",
-  projectId: "pchc-web-changes",
-  storageBucket: "pchc-web-changes.appspot.com",
-  messagingSenderId: "982218349771",
-  appId: "1:982218349771:web:7cdc052b0e4bddb6524f4e",
-  measurementId: "G-3BBDS55VMW",
-  databaseURL: "https://pchc-web-changes-default-rtdb.firebaseio.com"
-};
-
-firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
-const auth = firebase.auth();
-
-document.addEventListener("DOMContentLoaded", () => {
-  const loginBtn = document.getElementById('loginBtn');
-  const logoutBtn = document.getElementById('logoutBtn');
-  const loginModal = document.getElementById('loginModal');
-  const closeModal = document.getElementById('closeModal');
-  const submitLogin = document.getElementById('submitLogin');
-  const loginError = document.getElementById('loginError');
-  const adminControls = document.getElementById('adminControls');
-
-  loginBtn.onclick = () => loginModal.style.display = 'block';
-  closeModal.onclick = () => loginModal.style.display = 'none';
-
-  submitLogin.onclick = () => {
-    const email = document.getElementById('adminEmail').value;
-    const password = document.getElementById('adminPassword').value;
-
-    auth.signInWithEmailAndPassword(email, password)
-      .then(() => {
-        loginModal.style.display = 'none';
-        loginError.style.display = 'none';
-      })
-      .catch(() => {
-        loginError.style.display = 'block';
-      });
-  };
-
-  logoutBtn.onclick = () => {
-    auth.signOut().then(() => {
-      adminControls.style.display = 'none';
-      loginBtn.style.display = 'inline';
-      logoutBtn.style.display = 'none';
-    });
-  };
-
-  auth.onAuthStateChanged(user => {
-    if (user) {
-      adminControls.style.display = 'block';
-      loginBtn.style.display = 'none';
-      logoutBtn.style.display = 'inline';
-    } else {
-      adminControls.style.display = 'none';
-      loginBtn.style.display = 'inline';
-      logoutBtn.style.display = 'none';
-    }
-  });
-
-  loadAnnouncementsFromFirebase();
-});
-
-function saveAnnouncementsToFirebase() {
-  const listItems = document.querySelectorAll('#announcementList li');
-  const data = [];
-
-  listItems.forEach(li => {
-    const text = li.childNodes[0]?.textContent.trim();
-    if (text) data.push(text);
-  });
-
-  db.ref('announcements').set(data);
-}
-
-function loadAnnouncementsFromFirebase() {
-  const list = document.getElementById('announcementList');
-  if (!list) return;
-
-  db.ref('announcements').once('value', snapshot => {
-    const data = snapshot.val();
-    list.innerHTML = '';
-
-    if (Array.isArray(data)) {
-      data.forEach(text => {
-        const li = document.createElement('li');
-        li.textContent = text;
-
-        if (auth.currentUser) {
-          const removeBtn = document.createElement('button');
-          removeBtn.textContent = 'Remove';
-          removeBtn.style.marginLeft = '10px';
-          removeBtn.onclick = () => {
-            li.remove();
-            saveAnnouncementsToFirebase();
-          };
-          li.appendChild(removeBtn);
-        }
-
-        list.appendChild(li);
-      });
-    }
-  });
-}
-
-function addAnnouncement() {
-  const list = document.getElementById('announcementList');
-  const newItemText = document.getElementById('newAnnouncement').value;
-  if (newItemText.trim() === "") return;
-
-  const li = document.createElement('li');
-  li.textContent = newItemText;
-
-  const removeBtn = document.createElement('button');
-  removeBtn.textContent = 'Remove';
-  removeBtn.style.marginLeft = '10px';
-  removeBtn.onclick = () => {
-    li.remove();
-    saveAnnouncementsToFirebase();
-  };
-
-  li.appendChild(removeBtn);
-  list.appendChild(li);
-
-  document.getElementById('newAnnouncement').value = '';
-  saveAnnouncementsToFirebase();
-}
