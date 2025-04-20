@@ -379,13 +379,20 @@ body {
   }
   
   .dropdown-toggle {
-    background-color: #007BFF;
+    background: none;
     color: white;
-    padding: 10px 15px;
     border: none;
-    border-radius: 6px;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 0;
     cursor: pointer;
+    transition: color 0.3s ease;
   }
+  
+  .dropdown-toggle:hover {
+    color: #fb4f14; /* Broncos Orange on hover */
+  }
+  
   
   .dropdown-toggle:focus {
     outline: none;
@@ -421,22 +428,4 @@ body {
   .dropdown.show .dropdown-menu {
     display: block;
   }
-  .nav-btn,
-  .dropdown-toggle {
-    background-color: #007BFF;  /* Blue background */
-    color: white;               /* White text */
-    padding: 10px 15px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    transition: background-color 0.2s ease;
-  }
   
-  .nav-btn:hover,
-  .dropdown-toggle:hover {
-    background-color: #0056b3;  /* Darker blue on hover */
-  }
-
