@@ -61,7 +61,15 @@ body {
   nav button:hover {
     color: #fb4f14; /* Broncos Orange */
   }
-  
+  button {
+    background: #002244;
+    color: white;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
   
   
   /* Hero Section */
