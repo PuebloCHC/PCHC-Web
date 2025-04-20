@@ -1,23 +1,19 @@
-// Firebase config + init FIRST
+// Firebase config + init
 const firebaseConfig = {
     apiKey: "AIzaSyDoP12wQz5Rw9RamCq-v7swBZCL5zC602M",
     authDomain: "pchc-web-changes.firebaseapp.com",
+    databaseURL: "https://pchc-web-changes-default-rtdb.firebaseio.com/",
     projectId: "pchc-web-changes",
-    storageBucket: "pchc-web-changes.firebasestorage.app",
+    storageBucket: "pchc-web-changes.appspot.com",
     messagingSenderId: "982218349771",
     appId: "1:982218349771:web:7cdc052b0e4bddb6524f4e",
     measurementId: "G-3BBDS55VMW"
   };
   
-  // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   const db = firebase.database();
+  const auth = firebase.auth();
   
-  // Admin login credentials
-  const ADMIN_USERNAME = "admin";
-  const ADMIN_PASSWORD = "Acts2:38!";
-  
-  // Wait for the page to load before running any code
   document.addEventListener("DOMContentLoaded", () => {
     const loginBtn = document.getElementById('loginBtn');
     const loginModal = document.getElementById('loginModal');
@@ -25,33 +21,40 @@ const firebaseConfig = {
     const submitLogin = document.getElementById('submitLogin');
     const loginError = document.getElementById('loginError');
     const adminControls = document.getElementById('adminControls');
+    const logoutBtn = document.getElementById('logoutBtn');
   
-    // Show login modal
-    if (loginBtn && loginModal && closeModal && submitLogin) {
-      loginBtn.onclick = () => loginModal.style.display = 'block';
-      closeModal.onclick = () => loginModal.style.display = 'none';
-      
-      // Handle the login submission
-      submitLogin.onclick = () => {
-        const username = document.getElementById('adminUsername').value;
-        const password = document.getElementById('adminPassword').value;
-        if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
-          localStorage.setItem('isAdmin', 'true');
+    loginBtn.onclick = () => loginModal.style.display = 'block';
+    closeModal.onclick = () => loginModal.style.display = 'none';
+  
+    submitLogin.onclick = () => {
+      const email = document.getElementById('adminEmail').value;
+      const password = document.getElementById('adminPassword').value;
+  
+      auth.signInWithEmailAndPassword(email, password)
+        .then(() => {
           loginModal.style.display = 'none';
-          if (adminControls) adminControls.style.display = 'block';
-          if (loginError) loginError.style.display = 'none';
-        } else {
-          if (loginError) loginError.style.display = 'block';
-        }
-      };
-    }
+          loginError.style.display = 'none';
+        })
+        .catch(error => {
+          console.error("Login error:", error);
+          loginError.style.display = 'block';
+        });
+    };
   
-    // If admin is logged in, show admin controls
-    if (localStorage.getItem('isAdmin') === 'true' && adminControls) {
-      adminControls.style.display = 'block';
-    }
+    logoutBtn.onclick = () => {
+      auth.signOut();
+    };
   
-    // Load announcements from Firebase
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        if (adminControls) adminControls.style.display = 'block';
+        if (logoutBtn) logoutBtn.style.display = 'inline-block';
+      } else {
+        if (adminControls) adminControls.style.display = 'none';
+        if (logoutBtn) logoutBtn.style.display = 'none';
+      }
+    });
+  
     loadAnnouncementsFromFirebase();
   });
   
@@ -82,15 +85,17 @@ const firebaseConfig = {
           const li = document.createElement('li');
           li.textContent = text;
   
-          const removeBtn = document.createElement('button');
-          removeBtn.textContent = 'Remove';
-          removeBtn.style.marginLeft = '10px';
-          removeBtn.onclick = () => {
-            li.remove();
-            saveAnnouncementsToFirebase();
-          };
+          if (auth.currentUser) {
+            const removeBtn = document.createElement('button');
+            removeBtn.textContent = 'Remove';
+            removeBtn.style.marginLeft = '10px';
+            removeBtn.onclick = () => {
+              li.remove();
+              saveAnnouncementsToFirebase();
+            };
+            li.appendChild(removeBtn);
+          }
   
-          li.appendChild(removeBtn);
           list.appendChild(li);
         });
       }

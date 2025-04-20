@@ -17,7 +17,8 @@
       <li><a href="https://www.facebook.com/MyPCHC/" target="_blank" rel="noopener">Facebook</a></li>
       <li><a href="https://cash.app/$PuebloCHC" target="_blank" rel="noopener">Give to PCHC Via Cash App</a></li>
       <li><a href="index.html">Contact</a></li>
-      <li><a <button id="loginBtn">Login</button></a></li>
+      <li><button id="loginBtn">Login</button></li>
+      <li><button id="logoutBtn" style="display: none;">Logout</button></li>
     </ul>
   </nav>
 
@@ -43,10 +44,10 @@
     <div class="modal-content">
       <span id="closeModal">&times;</span>
       <h2>Admin Login</h2>
-      <input type="text" id="adminUsername" placeholder="Enter username" />
-      <input type="password" id="adminPassword" placeholder="Enter password" />
+      <input type="email" id="adminEmail" placeholder="Email">
+      <input type="password" id="adminPassword" placeholder="Password">
       <button id="submitLogin">Log In</button>
-      <p id="loginError" style="color: red; display: none;">Incorrect username or password.</p>
+      <p id="loginError" style="color: red; display: none;">Login failed. Check your credentials.</p>
     </div>
   </div>
   
