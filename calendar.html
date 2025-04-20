@@ -43,10 +43,13 @@
     <div class="modal-content">
       <span id="closeModal">&times;</span>
       <h2>Admin Login</h2>
-      <input type="password" id="adminPassword" placeholder="Enter admin password">
+      <input type="text" id="adminUsername" placeholder="Enter username" />
+      <input type="password" id="adminPassword" placeholder="Enter password" />
       <button id="submitLogin">Log In</button>
-      <p id="loginError" style="color: red; display: none;">Incorrect password.</p>
+      <p id="loginError" style="color: red; display: none;">Incorrect username or password.</p>
     </div>
+  </div>
+  
   </div>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
