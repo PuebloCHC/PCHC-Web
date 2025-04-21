@@ -431,4 +431,13 @@ body {
       font-size: 0.95rem;
     }
   }
+  #adminControls {
+    margin-top: 10px;
+  }
+  
+  #videoLinkInput {
+    width: 300px;
+    padding: 5px;
+    margin-right: 5px;
+  }
   
