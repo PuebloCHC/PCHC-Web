@@ -23,11 +23,12 @@ window.onUserChange = function (user) {
     if (loginBtn) loginBtn.style.display = 'inline-block';
   }
 
-  loadAnnouncements();
+  loadAnnouncements(user); // <--- pass the user explicitly
 };
 
+
 // Load announcements from Firebase
-function loadAnnouncements() {
+function loadAnnouncements(user = null) {
   const list = document.getElementById('announcementList');
   if (!list) return;
 
@@ -41,7 +42,7 @@ function loadAnnouncements() {
         const li = document.createElement('li');
         li.textContent = text;
 
-        if (auth.currentUser) {
+        if (user) {
           const removeBtn = document.createElement('button');
           removeBtn.textContent = 'Remove';
           removeBtn.style.marginLeft = '10px';
@@ -57,6 +58,7 @@ function loadAnnouncements() {
     }
   });
 }
+
 
 // Save announcements to Firebase
 function saveAnnouncements() {
