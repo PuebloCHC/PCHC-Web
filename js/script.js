@@ -115,21 +115,50 @@ function loadVideo() {
 
   const videoRef = ref(db, "video/current");
   get(videoRef).then(snapshot => {
-    const videoId = snapshot.val();
-    if (videoId) {
-      videoFrame.src = `https://www.youtube.com/embed/${videoId}`;
+    const fullUrl = snapshot.val();
+    if (fullUrl) {
+      const embedUrl = convertToEmbedUrl(fullUrl);
+      if (embedUrl) {
+        videoFrame.src = embedUrl;
+      }
     }
   });
 }
+
 window.updateVideo = function () {
   const input = document.getElementById("videoLinkInput");
   if (!input) return;
 
-  const videoId = input.value.trim();
-  if (videoId) {
+  const fullUrl = input.value.trim();
+  if (fullUrl && fullUrl.includes("youtube.com") || fullUrl.includes("youtu.be")) {
     const videoRef = ref(db, "video/current");
-    set(videoRef, videoId)
+    set(videoRef, fullUrl)
       .then(() => alert("Video updated!"))
       .catch(err => console.error("Failed to update video:", err));
+  } else {
+    alert("Please enter a valid YouTube URL.");
   }
 };
+function convertToEmbedUrl(url) {
+  try {
+    const parsedUrl = new URL(url);
+    const hostname = parsedUrl.hostname;
+
+    // Handle standard YouTube links
+    if (hostname.includes("youtube.com") && parsedUrl.searchParams.has("v")) {
+      const videoId = parsedUrl.searchParams.get("v");
+      return `https://www.youtube.com/embed/${videoId}`;
+    }
+
+    // Handle shortened youtu.be links
+    if (hostname === "youtu.be") {
+      const videoId = parsedUrl.pathname.slice(1);
+      return `https://www.youtube.com/embed/${videoId}`;
+    }
+
+    return null; // Not a valid YouTube video URL
+  } catch (e) {
+    console.error("Invalid URL:", url);
+    return null;
+  }
+}
