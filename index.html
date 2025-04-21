@@ -129,7 +129,12 @@
           </iframe>
           <div id="adminControls" style="display: none;">
             <h3>Edit Video</h3>
-            <input type="text" id="videoLinkInput" placeholder="Enter YouTube video ID">
+            <input type="url" id="videoLinkInput" 
+            placeholder="Enter YouTube video URL" 
+            autocomplete="off" 
+            autocorrect="off" 
+            autocapitalize="off" 
+            spellcheck="false">
             <button onclick="updateVideo()">Save</button>
           </div>
         </section>
