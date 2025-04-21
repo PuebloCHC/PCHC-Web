@@ -4,6 +4,7 @@ import { ref, set, get } from "https://www.gstatic.com/firebasejs/9.23.0/firebas
 
 document.addEventListener("DOMContentLoaded", () => {
   loadAnnouncements();
+  loadVideo();
 });
 
 // Define global function to handle user auth state UI
@@ -108,4 +109,27 @@ document.addEventListener('DOMContentLoaded', () => {
     dropdown.classList.remove('show');
   });
 });
+function loadVideo() {
+  const videoFrame = document.getElementById("videoFrame");
+  if (!videoFrame) return;
 
+  const videoRef = ref(db, "video/current");
+  get(videoRef).then(snapshot => {
+    const videoId = snapshot.val();
+    if (videoId) {
+      videoFrame.src = `https://www.youtube.com/embed/${videoId}`;
+    }
+  });
+}
+window.updateVideo = function () {
+  const input = document.getElementById("videoLinkInput");
+  if (!input) return;
+
+  const videoId = input.value.trim();
+  if (videoId) {
+    const videoRef = ref(db, "video/current");
+    set(videoRef, videoId)
+      .then(() => alert("Video updated!"))
+      .catch(err => console.error("Failed to update video:", err));
+  }
+};
