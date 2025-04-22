@@ -40,113 +40,122 @@
   </header>
 
   <main>
-    <section id="about">
-        <h2>About Us</h2>
-        <div class="about-container">
-          <img src="Bishop-Mama.png" alt="About PCHC" class="about-image" />
-          <p class="about-text">
-            "One Lord, One Faith, One Baptism" Ephesians 4:5<br>
-            We are an Apostolic church all about healing the land of Pueblo through a relationship with Jesus Christ!<br>
-            Our foundation is Acts 2:38. "Then Peter said to them, “Repent, and let every one of you be baptized in the name 
-            of Jesus Christ for the remission of sins; and you shall receive 
-            the gift of the Holy Spirit."<br>
-            <br>
-            The two individuals you see here are our Bishop and Mama Reeves.<br>
-            They take great care of us, and are always willing to help!
-          </p>
-        </div>
-    </section>
-    
-    <section id="announcements">
-      <h2>Announcements</h2>
-      <ul class="announcement-list">
-        <script>
-            const apiKey = 'AIzaSyA18ZEh4f1NIseKFpZ0IYw3qS5sC_Wb1rc';
-            const calendarId = 'mypueblochc@gmail.com';
-          
-            const now = new Date();
-          
-            // Get Sunday of the current week
-            const startOfWeek = new Date(now);
-            startOfWeek.setDate(now.getDate() - now.getDay());
-            startOfWeek.setHours(0, 0, 0, 0);
-          
-            // Get Saturday of next week (2 weeks total)
-            const endOfNextWeek = new Date(startOfWeek);
-            endOfNextWeek.setDate(startOfWeek.getDate() + 13);
-            endOfNextWeek.setHours(23, 59, 59, 999);
-          
-            const isoStart = startOfWeek.toISOString();
-            const isoEnd = endOfNextWeek.toISOString();
-          
-            const url = `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events?key=${apiKey}&timeMin=${isoStart}&timeMax=${isoEnd}&singleEvents=true&orderBy=startTime`;
-          
-            fetch(url)
-              .then(response => response.json())
-              .then(data => {
-                const list = document.querySelector('.announcement-list');
-                list.innerHTML = '';
-          
-                if (!data.items || data.items.length === 0) {
-                  list.innerHTML = '<li>No upcoming events this week or next.</li>';
-                  return;
-                }
-          
-                data.items.forEach(event => {
-                  const date = new Date(event.start.dateTime || event.start.date);
-                  const formattedDate = date.toLocaleDateString(undefined, {
-                    weekday: 'short',
-                    month: 'short',
-                    day: 'numeric',
-                    year: 'numeric'
-                  });
-          
-                  const time = event.start.dateTime
-                    ? ` @ ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`
-                    : '';
-          
-                  list.innerHTML += `<li>${formattedDate}${time} - ${event.summary}</li>`;
-                });
-              })
-              .catch(error => {
-                console.error('Error fetching events:', error);
-              });
-          </script>
-          
-      </ul>
-    </section>
-
-    <section id="video">
-        <h2>Check out<br>
-          <a href="https://www.youtube.com/channel/UCxpboPa90U_5UoD7bU4l1Bg" target="_blank" rel="noopener">
-            Our YouTube
-          </a>
-        </h2>
-          <iframe 
-            src="https://www.youtube.com/embed/erLwHxisYQU" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen>
-          </iframe>
-          <div id="adminControls" style="display: none;">
-            <h3>Edit Video</h3>
-            <input type="url" id="videoLinkInput" 
-            placeholder="Enter YouTube video URL" 
-            autocomplete="off" 
-            autocorrect="off" 
-            autocapitalize="off" 
-            spellcheck="false">
-            <button onclick="updateVideo()">Save</button>
-          </div>
+    <div class="main-container">
+        <section id="about">
+            <h2>About Us</h2>
+            <div class="about-container">
+              <img src="Bishop-Mama.png" alt="About PCHC" class="about-image" />
+              <p class="about-text">
+                "One Lord, One Faith, One Baptism" Ephesians 4:5<br>
+                We are an Apostolic church all about healing the land of Pueblo through a relationship with Jesus Christ!<br>
+                Our foundation is Acts 2:38. "Then Peter said to them, “Repent, and let every one of you be baptized in the name 
+                of Jesus Christ for the remission of sins; and you shall receive 
+                the gift of the Holy Spirit."<br>
+                <br>
+                The two individuals you see here are our Bishop and Mama Reeves.<br>
+                They take great care of us, and are always willing to help!
+              </p>
+            </div>
         </section>
-    </section>
+        <aside class="side-content">
+            <h3>Current Weather</h3>
+            <div id="weather">
+            Loading weather...
+            </div>
+  
+        </aside>
 
-    <section id="contact">
-      <h2>Contact Us</h2>
-      <p>Email us at <a href="mailto:mypueblochc@gmail.com">mypueblochc@gmail.com</a></p>
-      <p>Bishop Reeves Cell: (719) 640-7720</p>
-      <p>Mama Reeves Cell: (719) 640-7721</p>
-      <p>Call or text if you need anything</p>
-    </section>
+        <section id="announcements">
+            <h2>Announcements</h2>
+            <ul class="announcement-list">
+              <script>
+                  const apiKey = 'AIzaSyA18ZEh4f1NIseKFpZ0IYw3qS5sC_Wb1rc';
+                  const calendarId = 'mypueblochc@gmail.com';
+                
+                  const now = new Date();
+                
+                  // Get Sunday of the current week
+                  const startOfWeek = new Date(now);
+                  startOfWeek.setDate(now.getDate() - now.getDay());
+                  startOfWeek.setHours(0, 0, 0, 0);
+                
+                  // Get Saturday of next week (2 weeks total)
+                  const endOfNextWeek = new Date(startOfWeek);
+                  endOfNextWeek.setDate(startOfWeek.getDate() + 13);
+                  endOfNextWeek.setHours(23, 59, 59, 999);
+                
+                  const isoStart = startOfWeek.toISOString();
+                  const isoEnd = endOfNextWeek.toISOString();
+                
+                  const url = `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events?key=${apiKey}&timeMin=${isoStart}&timeMax=${isoEnd}&singleEvents=true&orderBy=startTime`;
+                
+                  fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                      const list = document.querySelector('.announcement-list');
+                      list.innerHTML = '';
+                
+                      if (!data.items || data.items.length === 0) {
+                        list.innerHTML = '<li>No upcoming events this week or next.</li>';
+                        return;
+                      }
+                
+                      data.items.forEach(event => {
+                        const date = new Date(event.start.dateTime || event.start.date);
+                        const formattedDate = date.toLocaleDateString(undefined, {
+                          weekday: 'short',
+                          month: 'short',
+                          day: 'numeric',
+                          year: 'numeric'
+                        });
+                
+                        const time = event.start.dateTime
+                          ? ` @ ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`
+                          : '';
+                
+                        list.innerHTML += `<li>${formattedDate}${time} - ${event.summary}</li>`;
+                      });
+                    })
+                    .catch(error => {
+                      console.error('Error fetching events:', error);
+                    });
+                </script>
+                
+            </ul>
+          </section>
+      
+          <section id="video">
+              <h2>Check out<br>
+                <a href="https://www.youtube.com/channel/UCxpboPa90U_5UoD7bU4l1Bg" target="_blank" rel="noopener">
+                  Our YouTube
+                </a>
+              </h2>
+                <iframe 
+                  src="https://www.youtube.com/embed/erLwHxisYQU" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowfullscreen>
+                </iframe>
+                <div id="adminControls" style="display: none;">
+                  <h3>Edit Video</h3>
+                  <input type="url" id="videoLinkInput" 
+                  placeholder="Enter YouTube video URL" 
+                  autocomplete="off" 
+                  autocorrect="off" 
+                  autocapitalize="off" 
+                  spellcheck="false">
+                  <button onclick="updateVideo()">Save</button>
+                </div>
+              </section>
+          </section>
+      
+          <section id="contact">
+            <h2>Contact Us</h2>
+            <p>Email us at <a href="mailto:mypueblochc@gmail.com">mypueblochc@gmail.com</a></p>
+            <p>Bishop Reeves Cell: (719) 640-7720</p>
+            <p>Mama Reeves Cell: (719) 640-7721</p>
+            <p>Call or text if you need anything</p>
+          </section>
+    </div>
   </main>
 
   <footer>
@@ -172,6 +181,8 @@
   <script type="module" src="js/firebase-init.js"></script>
   <script type="module" src="js/auth.js"></script>
   <script type="module" src="js/script.js"></script>
+  <script type="module" src="js/weather.js"></script>
+
 
 </body>
 </html>
