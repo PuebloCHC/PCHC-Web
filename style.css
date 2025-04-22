@@ -440,11 +440,10 @@ body {
     padding: 5px;
     margin-right: 5px;
   }
-  .main-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 20px; /* optional spacing between sections */
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; 
+    gap: 20px;
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
