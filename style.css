@@ -207,9 +207,9 @@ body {
   @media (max-width: 768px) {
     .side-content {
       position: static;
+      width: 100%;
       margin-top: 20px;
     }
-  }
   #weather {
     background-color: #ffffff99;
     padding: 10px;
@@ -476,4 +476,3 @@ body {
     padding: 5px;
     margin-right: 5px;
   }
-  
