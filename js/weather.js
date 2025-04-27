@@ -1,5 +1,5 @@
 async function getWeather() {
-    const apiKey = "dab06b665fa116acd91338d9bcfc1965"; // Replace with your actual key
+    const apiKey = "8e2008df03ee0613203a243666d8fa90";
     const city = "Pueblo";
     const state = "CO";
     const country = "US";
